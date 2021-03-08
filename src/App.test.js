@@ -6,7 +6,7 @@ configure({ testIdAttribute: 'data-test-id' })
 test('initial value equals 0', () => {
   render(<App />);
 
-  expect(screen.getByTestId('value')).toHaveTextContent('0');
+  expect(screen.getByTestId('value').textContent).toBe('0');
 });
 
 
@@ -15,7 +15,7 @@ test('value equals 1', () => {
 
   fireEvent.click(screen.getByTestId('button-add'))
 
-  expect(screen.getByTestId('value')).toHaveTextContent('1');
+  expect(screen.getByTestId('value').textContent).toBe('1');
 });
 
 test('value equals -1', () => {
@@ -23,5 +23,5 @@ test('value equals -1', () => {
 
   fireEvent.click(screen.getByTestId('button-subtract'))
 
-  expect(screen.getByTestId('value')).toHaveTextContent('1');
+  expect(screen.getByTestId('value').textContent).toBe('-1');
 });
