@@ -15,7 +15,7 @@ test('value equals 1', () => {
 
   fireEvent.click(screen.getByTestId('button-add'))
 
-  expect(screen.getByTestId('value').textContent).toBe('1');
+  expect(screen.getByTestId('value').textContent).toBe('10');
 });
 
 test('value equals -1', () => {
@@ -23,5 +23,5 @@ test('value equals -1', () => {
 
   fireEvent.click(screen.getByTestId('button-subtract'))
 
-  expect(screen.getByTestId('value').textContent).toBe('-1');
+  expect(screen.getByTestId('value').textContent).toBe('-10');
 });

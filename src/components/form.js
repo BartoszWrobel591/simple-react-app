@@ -6,13 +6,13 @@ const Form = () => {
 
     return (
         <div className="Form">
-            <Button data-test-id='button-subtract' onClick={() => setAmount(number => number - 1)}>
+            <Button data-test-id='button-subtract' onClick={() => setAmount(number => number - 10)}>
                 -
             </Button>
             <div data-test-id='value'>
                 {amount}
             </div>
-            <Button data-test-id='button-add' onClick={() => setAmount(number => number + 1)}>
+            <Button data-test-id='button-add' onClick={() => setAmount(number => number + 10)}>
                 +
             </Button>
         </div>
