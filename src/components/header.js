@@ -1,7 +1,7 @@
 const Header = () => {
     return (
         <div className='Header'>
-            Simple App
+            best voting application ever!
         </div>
     );
 };
