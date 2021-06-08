@@ -1,0 +1,34 @@
+- pipeline: "production"
+  on: "EVENT"
+  events:
+    - type: "PUSH"
+      refs:
+        - "refs/heads/main"
+  priority: "NORMAL"
+  fail_on_prepare_env_warning: true
+  actions:
+  - action: "Build Docker image"
+    type: "DOCKERFILE"
+    dockerfile_path: "Dockerfile"
+  - action: "Publish Docker image"
+    type: "DOCKER_PUSH"
+    docker_image_tag: "$BUDDY_EXECUTION_TAG"
+    repository: "$IMAGE_REPOSITORY"
+    integration_hash: "L39J4q2VolejO3K5ajNmGQBW71"
+  - action: "Restart server"
+    type: "SSH_COMMAND"
+    login: "login"
+    password: "secure!m/KFvE0ic55Vn3yi77O1JA==.3bZRv2LKpshOEwrvXyBbSw=="
+    host: "server.com"
+    port: "22"
+    authentication_mode: "PASS"
+    commands:
+      - "docker pull $IMAGE_REPOSITORY:$BUDDY_EXECUTION_TAG"
+      - "docker stop app"
+      - "docker run -d --rm -p 80:80 --name app $IMAGE_REPOSITORY:$BUDDY_EXECUTION_TAG"
+    run_as_script: true
+    shell: "BASH"
+  variables:
+  - key: "IMAGE_REPOSITORY"
+    value: "ownerro/simple-app"
+    type: "VAR"
