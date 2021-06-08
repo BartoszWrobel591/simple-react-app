@@ -7,11 +7,14 @@
 
 # testing
 /coverage
+/cypress/screenshots
+/cypress/videos
 
 # production
 /build
 
 # misc
+.idea
 .DS_Store
 .env.local
 .env.development.local
