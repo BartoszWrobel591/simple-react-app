@@ -32,3 +32,33 @@
   - key: "IMAGE_REPOSITORY"
     value: "ownerro/simple-app"
     type: "VAR"
+- pipeline: "test"
+  on: "CLICK"
+  refs:
+    - "refs/heads/main"
+  priority: "NORMAL"
+  fail_on_prepare_env_warning: true
+  actions:
+  - action: "Test button adding"
+    type: "BUILD"
+    working_directory: "/buddy/simple-react-app"
+    docker_image_name: "library/node"
+    docker_image_tag: "12"
+    execute_commands:
+      - "npm i"
+      - "npx start-server-and-test start http://localhost:3000 \"npx cypress run -s 'cypress/integration/button/add_spec.js'\""
+    volume_mappings:
+      - "/:/buddy/simple-react-app"
+    shell: "BASH"
+    run_next_parallel: true
+  - action: "Test button subtracting"
+    type: "BUILD"
+    working_directory: "/buddy/simple-react-app"
+    docker_image_name: "library/node"
+    docker_image_tag: "12"
+    execute_commands:
+      - "npm i"
+      - "npx start-server-and-test start http://localhost:3000 \"npx cypress run -s 'cypress/integration/button/subtract_spec.js'\""
+    volume_mappings:
+      - "/:/buddy/simple-react-app"
+    shell: "BASH"
